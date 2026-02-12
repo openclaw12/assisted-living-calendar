@@ -1,0 +1,32 @@
+[project]
+name = "assisted-living-calendar-backend"
+version = "0.1.0"
+description = "API + scheduling engine for the assisted living calendar platform"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.8.2",
+    "pydantic-settings>=2.6.1",
+    "sqlalchemy>=2.0.25",
+    "alembic>=1.13.2",
+    "redis>=5.0.8",
+    "psycopg[binary]>=3.2.1",
+    "passlib[bcrypt]>=1.7.4",
+    "python-slugify>=8.0.4",
+    "segno>=1.6.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "httpx",
+    "ruff",
+]
+
+[tool.uvicorn]
+app = "app.main:app"
+reload = true
+host = "0.0.0.0"
+port = 8000

@@ -1,0 +1,22 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "frontend/**"
+      - "backend/**"
+      - "infrastructure/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build images
+        run: docker compose -f infrastructure/docker/docker-compose.yml build
+      - name: Push to registry
+        run: echo "TODO: push images to registry"
+      - name: Trigger infrastructure rollout
+        run: echo "TODO: call Terraform/Argo to deploy"

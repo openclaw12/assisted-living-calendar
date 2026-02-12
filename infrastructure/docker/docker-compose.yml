@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.backend
+    env_file: ../../config/dev.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+  frontend:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.frontend
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: alc
+      POSTGRES_PASSWORD: alc
+      POSTGRES_DB: alc
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
