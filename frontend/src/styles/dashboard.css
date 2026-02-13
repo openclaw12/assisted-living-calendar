@@ -1,0 +1,33 @@
+.dashboard {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.portal {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.signup form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.signup input,
+.signup button {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e2e8f0;
+}
+
+.signup button {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  border: none;
+  color: #0f172a;
+  font-weight: 600;
+}
