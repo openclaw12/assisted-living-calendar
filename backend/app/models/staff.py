@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime, timedelta
 
 from sqlalchemy import DateTime, ForeignKey, Interval, String
 from sqlalchemy.dialects.postgresql import UUID
@@ -26,8 +27,8 @@ class StaffShift(AppBase):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     staff_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("staff_members.id"))
-    start_at: Mapped[DateTime]
-    end_at: Mapped[DateTime]
-    break_duration: Mapped[Interval | None]
+    start_at: Mapped[datetime] = mapped_column(DateTime)
+    end_at: Mapped[datetime] = mapped_column(DateTime)
+    break_duration: Mapped[timedelta | None] = mapped_column(Interval)
 
     staff: Mapped[StaffMember] = relationship(back_populates="shifts")

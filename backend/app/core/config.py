@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    database_url: str = Field("postgresql+psycopg://alc:alc@localhost:5432/alc_dev", alias="DATABASE_URL")
+    database_url: str = Field("sqlite:///./app.db", alias="DATABASE_URL")
 
     class Config:
         env_file = ("config/dev.env",)

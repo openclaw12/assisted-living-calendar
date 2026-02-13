@@ -1,8 +1,9 @@
 import uuid
+from datetime import date
 
 from sqlalchemy import Boolean, Date, ForeignKey, String
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import AppBase
 
@@ -14,7 +15,7 @@ class Resident(AppBase):
     account_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("user_accounts.id"))
     first_name: Mapped[str] = mapped_column(String(80))
     last_name: Mapped[str] = mapped_column(String(80))
-    birth_date: Mapped[Date | None]
+    birth_date: Mapped[date | None] = mapped_column(Date)
     room_number: Mapped[str | None] = mapped_column(String(40))
     mobility_notes: Mapped[str | None] = mapped_column(String(255))
     dietary_notes: Mapped[str | None] = mapped_column(String(255))

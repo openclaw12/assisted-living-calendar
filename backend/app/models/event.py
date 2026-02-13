@@ -1,4 +1,5 @@
 import uuid
+from datetime import date, time
 
 from sqlalchemy import Date, ForeignKey, Integer, String, Time
 from sqlalchemy.dialects.postgresql import UUID
@@ -12,9 +13,9 @@ class Event(AppBase):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     title: Mapped[str] = mapped_column(String(120))
-    date: Mapped[Date]
-    start_time: Mapped[Time | None]
-    end_time: Mapped[Time | None]
+    date: Mapped[date] = mapped_column(Date)
+    start_time: Mapped[time | None] = mapped_column(Time)
+    end_time: Mapped[time | None] = mapped_column(Time)
     capacity: Mapped[int | None] = mapped_column(Integer)
     location: Mapped[str | None] = mapped_column(String(120))
     vendor_name: Mapped[str | None] = mapped_column(String(120))

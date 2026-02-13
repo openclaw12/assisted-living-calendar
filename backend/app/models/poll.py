@@ -1,4 +1,5 @@
 import uuid
+from datetime import date
 
 from sqlalchemy import Date, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import UUID
@@ -12,7 +13,7 @@ class Poll(AppBase):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     title: Mapped[str] = mapped_column(String(120))
-    month: Mapped[Date]
+    month: Mapped[date] = mapped_column(Date)
     description: Mapped[str | None] = mapped_column(String(255))
 
     options: Mapped[list["PollOption"]] = relationship(back_populates="poll", cascade="all, delete-orphan")
